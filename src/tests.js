@@ -3,12 +3,18 @@ function constructTest(test){
 		assert.timeout( 30000 );
 		assert.expect(3);
 		var done = assert.async();
-		$.get(test.url, function(response){
-			assert.ok( response, "Download " + test.url );
-			assert.equal(response.length, test.size, "Size check");
-			assert.equal(CryptoJS.SHA1(response).toString(), test.hash, "Hash check");
-			done();
-		});
+		$.ajax(
+			{
+				url: test.url, 
+				cache: false,
+				success: function(response){
+					assert.ok( response, "Download " + test.url );
+					assert.equal(response.length, test.size, "Size check");
+					assert.equal(CryptoJS.SHA1(response).toString(), test.hash, "Hash check");
+					done();
+					}
+			}
+		);
 	});
 }
 
