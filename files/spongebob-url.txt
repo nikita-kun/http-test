@@ -1,0 +1,2 @@
+This file must be blocked due to its filename. A browser has to be redirected to https://www.ida.liu.se/~TDTS04/labs/2011/ass2/error1.html
+
