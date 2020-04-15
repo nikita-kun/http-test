@@ -112,7 +112,7 @@ constructNegativeTest({
     hash: "8e7fbfa21478e0bb07702cd62138c3f0f356402d"
 });
 
-QUnit.module("HTTP Content filtering*");
+QUnit.module("HTTP Content filtering traps*");
 tests = [{
         url: "files/keyword-append-1m.txt",
         size: 1029143,
@@ -168,9 +168,21 @@ tests = [{
         size: 257305,
         hash: "bc144819325cf10c078d9ea11939ae104626364a"
     },
+    {
+        url: "files/keyword.html",
+        size: 130,
+        hash: "907758e23136f708ee7b4f6fd8408d2258c683bf"
+    },
 ]
 
 tests.forEach(constructNegativeTest);
+
+QUnit.module("HTTP Binary filtering trap*");
+constructTest({
+    url: "files/keyword-prepend-1m.bin",
+    size: 970258,
+    hash: "5c132293cc14c47d3643acc1c35528a220259da7"
+});
 
 QUnit.module("HTTP response consistency*");
 tests = [{
