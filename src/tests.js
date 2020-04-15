@@ -10,7 +10,7 @@ function constructTest(test, negate = false) {
             error: function( jqXHR, textStatus, errorThrown){
             	assert.expect(1);
             	console.log(textStatus);
-            	assert.ok(negate === true && textStatus == "error", "Response blocked");
+            	assert.ok(negate === true, "Response blocked");
 	            done();          
             },
             success: function(response) {
