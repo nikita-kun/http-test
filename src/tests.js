@@ -7,11 +7,16 @@ function constructTest(test, negate = false) {
         $.ajax({
             url: test.url,
             cache: false,
+            error: function( jqXHR, textStatus, errorThrown){
+            	assert.expect(1);
+            	console.log(textStatus);
+            	assert.ok(negate === true && textStatus == "error", "Response blocked");
+	            done();          
+            },
             success: function(response) {
                 assert.ok(response, "Download " + test.url);
                 assert.ok(true, "First 300 characters: " + response.slice(0, 300));
                 assert.ok(true, "Last 300 characters: " + response.slice(-300));
-
 
                 if (negate === true) {
                     assert.notEqual(response.length, test.size, "Size check: NOT " + test.size);
@@ -85,7 +90,7 @@ tests = [{
         url: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg",
         size: 15034,
         hash: "34882e5684481ec66dadf23f6ec59d36cc83d387"
-    },
+    }
 ]
 
 tests.forEach(constructTest);
@@ -172,7 +177,7 @@ tests = [{
         url: "files/keyword.html",
         size: 130,
         hash: "907758e23136f708ee7b4f6fd8408d2258c683bf"
-    },
+    }
 ]
 
 tests.forEach(constructNegativeTest);
