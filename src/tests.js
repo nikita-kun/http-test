@@ -107,7 +107,7 @@ tests.forEach(constructEndingTest);
 
 QUnit.module("HTTP URL filtering*");
 constructNegativeTest({
-    url: "files/spongebob-url.txt",
+    url: "files/" + "spon" + "geb" + "ob-url.txt",
     size: 140,
     hash: "8e7fbfa21478e0bb07702cd62138c3f0f356402d"
 });
