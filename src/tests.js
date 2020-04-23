@@ -19,6 +19,8 @@ function constructTest(test, negate = false) {
                 assert.ok(true, "Last 300 characters: " + response.slice(-300));
 
                 if (negate === true) {
+                	assert.expect(6);
+                	assert.notOk(response.includes("HTTP/"), "Response is not corrupted (does not contain a substring 'HTTP/')");
                     assert.notEqual(response.length, test.size, "Size check: NOT " + test.size);
                     assert.notEqual(CryptoJS.SHA1(response).toString(), test.hash, "Hash check: NOT " + test.hash);
                 } else {
